@@ -14,6 +14,24 @@ trait MorseCode {
     fn to_morse_code(&self) -> Message;
 }
 
+impl MorseCode for String {
+    fn to_morse_code(&self) -> Message {
+        use Pulse::*;
+        let mut msg = Vec::new();
+        for c in self.chars(){
+            let letter = match c {
+                'A' | 'a' => vec![Short, Long],
+                'B' | 'b' => vec![Long, Short, Long],
+                _ => continue,
+                // Honestly I'm not gonna type of definitions of every actual letter and most unicode characters.
+            };
+            msg.push(letter);
+
+        }
+        msg
+    }
+}
+
 impl std::fmt::Display for Pulse {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -42,14 +60,7 @@ fn main() {
 }
 
 
-impl std::fmt::Display for Pulse {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Short => write!(f, "."), 
-            Self::Long => write!(f, "_"),
-        }
-    }
-}
+
 
 #[test]
 fn hello_world() {
