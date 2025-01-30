@@ -30,8 +30,26 @@ impl Hand {
     }
 
     fn value(&self) -> usize {
-        // TODO: implement this method
-        0 
+        use self::Card::*;
+        let mut val :usize = 0;
+        for card in &self.cards {
+            val = val + match card {
+                Ace => {if val < 11 {11} else {1}}
+                Two => {2}
+                Three => {3}
+                Four => {4}
+                Five => {5}
+                Six => {6}
+                Seven => {7}
+                Eight => {8}
+                Nine => {9}
+                Jack => {10}
+                Queen => {10}
+                King => {10}
+            }
+        }
+        val
+
     }
 
     fn is_loosing_hand(&self) -> bool {
@@ -68,7 +86,7 @@ fn risky_hand() {
     hand.add(Card::King);
     hand.add(Card::Queen);
     hand.add(Card::Ace);
-    
+
     assert_eq!(hand.value(), 21);
 }
 
@@ -78,7 +96,7 @@ fn oops() {
     hand.add(Card::King);
     hand.add(Card::Seven);
     hand.add(Card::Five);
-    
+
     assert!(hand.is_loosing_hand());
     assert_eq!(hand.value(), 22);
 }
