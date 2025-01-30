@@ -1,5 +1,10 @@
-fn info(a: &T) {
-    todo!();
+use std::any;
+use std::any::type_name_of_val;
+use std::ffi::CString;
+use std::fmt::{Debug, Display};
+
+fn info<T: Debug>(a: &T) -> () {
+    println!("{:?}", a);
 }
 
 fn main() {
@@ -9,17 +14,14 @@ fn main() {
     info(&b);
 
     // Advanced 1
-    // use std::ffi::CString;
-    
-    // let c = CString::new("?").unwrap();
-    // info(&input);
+    use std::ffi::CString;
+
+    let c = CString::new("?").unwrap();
+    info(&c);
 
     // Advanced 2
-    // use std::path::Path;
-    // let d = Path::new("/tmp/linkedin-learning");
-    // info(d);
-}
 
+}
 
 #[test]
 fn str() {
