@@ -1,5 +1,23 @@
 fn median(a: Vec<f32>) -> Option<f32> {
-    todo!();
+    let mut median :f32 = 0.0;
+    let elements :usize = a.len();
+    println!("Amount of elements {:?}", elements);
+    if elements.eq(&0){return None;}
+
+    let mut list = a;
+    list.sort_by( |a, b| a.partial_cmp(b).unwrap());
+    let middle = list.len() / 2;
+
+    median = if elements % 2 == 0 {
+        (list[middle-1]+list[middle])/2.0
+    } else {
+        list[elements / 2]
+    };
+
+    Some(median)
+
+
+
 }
 
 fn main() {
