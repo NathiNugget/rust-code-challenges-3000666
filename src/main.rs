@@ -1,7 +1,11 @@
 // TODO: import the necessary dependencies
+use chrono;
+use chrono::Local;
 
 struct ImportantEvent {
     // TODO: define data structure
+    what: String,
+    when: chrono::DateTime<Local>,
 }
 
 trait Deadline {
