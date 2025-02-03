@@ -1,11 +1,12 @@
 // TODO: import the necessary dependencies
 use chrono;
 use chrono::Local;
+use chrono::prelude::*;
 
 struct ImportantEvent {
     // TODO: define data structure
     what: String,
-    when: chrono::DateTime<Local>,
+    when: Date<Local>,
 }
 
 trait Deadline {
@@ -13,7 +14,9 @@ trait Deadline {
 }
 
 impl Deadline for ImportantEvent {
-    // TODO: implement trait
+    fn is_passed(&self) -> bool {
+        if &self.when < &Local::now().date() {true} else {false}
+    }
 }
 
 fn main() {
